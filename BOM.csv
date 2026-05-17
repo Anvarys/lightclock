@@ -1,0 +1,55 @@
+Name,Qty needed,Qty bought,Link,Price (Qty bought),Running total,Note
+LED driver,1,1,https://www.lcsc.com/product-detail/C157417.html,US$3.29,US$3.29,
+LED,72,80,https://www.lcsc.com/product-detail/C17215415.html,US$0.94,US$4.23,
+RP2040 MCU,1,1,https://www.lcsc.com/product-detail/C2040.html,US$0.95,US$5.18,
+USB-C PD controller,1,1,https://www.lcsc.com/product-detail/C970725.html,US$0.61,US$5.79,
+USB-C port,1,5,https://www.lcsc.com/product-detail/C7463258.html,US$1.20,US$6.99,
+Step-down buck converter to 3.3V,1,1,https://www.lcsc.com/product-detail/C60726.html,US$1.32,US$8.31,
+12MHz crystal,1,5,https://www.lcsc.com/product-detail/C2901650.html,US$0.38,US$8.69,
+64Mbit flash,1,1,https://www.lcsc.com/product-detail/C83140.html,US$1.34,US$10.03,can be interchanged with any memory size of the same family (up to 128Mbit)
+RTC IC,1,1,https://www.lcsc.com/product-detail/C107410.html,US$3.01,US$13.04,
+Coin battery holder,1,1,https://www.lcsc.com/product-detail/C7501066.html,US$0.82,US$13.86,
+6P Socket for the display,1,6,https://www.lcsc.com/product-detail/C2897388.html,US$0.99,US$14.85,
+Step-down buck converter to 10.5V,1,5,https://www.lcsc.com/product-detail/C52653.html,US$2.03,US$16.88,
+Capacitive touch IC,3,3,https://www.lcsc.com/product-detail/C91322.html,US$9.56,US$26.44,
+Buzzer,1,1,https://www.lcsc.com/product-detail/C255333.html,US$1.17,US$27.61,
+NPN transitor,1,5,https://www.lcsc.com/product-detail/C7603172.html,US$0.04,US$27.65,
+AO3401A,1,10,https://www.lcsc.com/product-detail/C15127.html,US$0.59,US$28.24,
+AO3400A,1,5,https://www.lcsc.com/product-detail/C20917.html,US$0.41,US$28.65,
+3.3uH inductor,2,5,https://www.lcsc.com/product-detail/C167219.html,US$0.85,US$29.50,
+B220A diode,2,5,https://www.lcsc.com/product-detail/C110481.html,US$0.47,US$29.97,
+Tactile button,1,10,https://www.lcsc.com/product-detail/C49140441.html,US$0.42,US$30.39,
+6.8pF capacitor,1,50,https://www.lcsc.com/product-detail/C318672.html,US$0.53,US$30.92,
+15pF capacitor,2,100,https://www.lcsc.com/product-detail/C1644.html,US$0.60,US$31.52,
+180pF capacitor,1,100,https://www.lcsc.com/product-detail/C107041.html,US$0.43,US$31.95,
+10nF capacitor,1,50,https://www.lcsc.com/product-detail/C1589.html,US$0.20,US$32.15,
+0.1uF capacitor,20,100,https://www.lcsc.com/product-detail/C91183.html,US$0.40,US$32.55,
+1uF capacitor,4,50,https://www.lcsc.com/product-detail/C5199872.html,US$0.45,US$33.00,
+2.2uF capacitor,1,10,https://www.lcsc.com/product-detail/C19110.html,US$0.19,US$33.19,
+10uF capacitor,3,10,https://www.lcsc.com/product-detail/C9807.html,US$0.39,US$33.58,
+22uF capacitor,2,10,https://www.lcsc.com/product-detail/C602037.html,US$0.43,US$34.01,
+27Ω resistor,3,100,https://www.lcsc.com/product-detail/C25190.html,US$0.15,US$34.16,
+249Ω ±0.1% resistor,3,10,https://www.lcsc.com/product-detail/C870575.html,US$0.73,US$34.89,±0.1% because it controls LED driver's max output intensity
+1kΩ resistor,2,100,https://www.lcsc.com/product-detail/C2907113.html,US$0.11,US$35.00,
+1kΩ 500mW resistor,2,2,https://www.lcsc.com/product-detail/C966306.html,US$0.01,US$35.01,"R1, R2: usb-c PD, required ≥400mW"
+10kΩ resistor,6,20,https://www.lcsc.com/product-detail/C95204.html,US$0.44,US$35.45,"±0.1% resistor, not required but recommended for R26, controls the 10.5V Vout of a converter "
+4.7kΩ resistor,2,100,https://www.lcsc.com/product-detail/C2907034.html,US$0.12,US$35.57,
+100kΩ ±0.1% resistor,2,20,https://www.lcsc.com/product-detail/C122538.html,US$0.45,US$36.02,±0.1% because it controls 3.3V Vout of a converter (R5)
+1MΩ resistor,1,100,https://www.lcsc.com/product-detail/C2907115.html,US$0.11,US$36.13,
+75kΩ resistor,3,100,https://www.lcsc.com/product-detail/C114636.html,US$0.16,US$36.29,
+47kΩ resistor,1,100,https://www.lcsc.com/product-detail/C105579.html,US$0.16,US$36.45,
+316kΩ ±0.1% resistor,1,20,https://www.lcsc.com/product-detail/C861833.html,US$0.55,US$37.00,±0.1% because it controls 3.3V Vout of a converter (R6)
+121kΩ resistor,1,20,https://www.lcsc.com/product-detail/C861095.html,US$0.52,US$37.52,"±0.1% resistor, not required but recommended for R27, controls the 10.5V Vout of a converter "
+LCSC FedEx fast shipping,,,-,US$28.81,US$66.33,Without fast shipping I won't be able to build it in time
+,,,,,,
+JLCPCB PCB,1,5,https://jlcpcb.com,US$15.75,US$82.08,
+JLCPCB DHL fast shipping,,,-,US$22.14,US$104.22,
+JLCPCB coupon,,,,-US$10.00,US$94.22,New user shipping coupon
+,,,,,,
+M2.5 5mm screws,9,50,https://fr.aliexpress.com/item/1005008305312481.html,US$2.13,US$96.35,"flat head, must have: dk <= 6.5mm && k <= 1.4mm"
+M3 5mm screws,,,https://fr.aliexpress.com/item/1005008305312481.html,US$2.03,US$98.38,"flat head, must have: dk <= 6.5mm && k <= 1.4mm"
+"Waveshare 2.42"" display",1,1,https://fr.aliexpress.com/item/1005007899721422.html,US$16.20,US$114.58,
+Aliexpress shipping,,,-,US$3.28,US$117.86,
+Fan 12V,1,1,https://fr.aliexpress.com/item/1005002566049059.html,US$2.87,US$120.73,
+,,,,,,
+Total,,,,US$120.73,,
