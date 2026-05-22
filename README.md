@@ -53,23 +53,25 @@ First you would want to buy all the required components found in the [BOM](https
 
 ## PCB
 
-<img src="https://github.com/Anvarys/lightclock/blob/main/images/pcb.png?raw=true" height="400">
+<img src="https://github.com/Anvarys/lightclock/blob/main/images/pcb.png?raw=true">
 
 3D renders:
 
-<img src="https://github.com/Anvarys/lightclock/blob/main/images/pcb_3d_top_no_bg_smaller.png?raw=true" height="400">
-
-<img src="https://github.com/Anvarys/lightclock/blob/main/images/pcb_3d_bottom_no_bg_smaller.png?raw=true" height="400">
+<table><tr>
+<td><img src="https://github.com/Anvarys/lightclock/blob/main/images/pcb_3d_top_no_bg_smaller.png?raw=true"></td>
+<td><img src="https://github.com/Anvarys/lightclock/blob/main/images/pcb_3d_bottom_no_bg_smaller.png?raw=true"></td>
+</tr></table>
 
 ## Assembly
 
-<img src="https://github.com/Anvarys/lightclock/blob/main/images/assembly_sideview.png?raw=true" height="400">
+<img src="https://github.com/Anvarys/lightclock/blob/main/images/assembly_sideview.png?raw=true">
 
 ## Assembled
 
-<img src="https://github.com/Anvarys/lightclock/blob/main/images/assembled_frontview.png?raw=true" height="400">
-
-<img src="https://github.com/Anvarys/lightclock/blob/main/images/assembled_backview.png?raw=true" height="400">
+<table><tr>
+<td><img src="https://github.com/Anvarys/lightclock/blob/main/images/assembled_frontview.png?raw=true"></td>
+<td><img src="https://github.com/Anvarys/lightclock/blob/main/images/assembled_backview.png?raw=true"></td>
+</tr></table>
 
 ## Tools I used
 
