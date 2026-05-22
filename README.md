@@ -1,5 +1,5 @@
 <div align="center">
-  <img src="https://github.com/Anvarys/lightclock/blob/main/images/simplified_design.png?raw=true" alt="Light clock" width="300">
+  <img src="https://github.com/Anvarys/lightclock/blob/main/images/simplified_design.png?raw=true" alt="Light clock" width="400">
 </div>
 
 <h2 align="center">Light Clock</h2>
@@ -43,6 +43,33 @@ Since the LEDs and ICs produce heat there is a 40x40x7mm fan on the back which i
 
 Also I added 4 exposed GPIO pads on the PCB that you can use them to integrate something extra to this device if you want to.
 
+## How to make your own light clock
+
+First you would want to buy all the required components found in the [BOM](https://github.com/Anvarys/lightclock/blob/main/BOM/BOM.csv), order the pcb using the gerbers from the [production folder](https://github.com/Anvarys/lightclock/tree/main/PCB/production) (you can also find the positions file which is required for JLCPCB to solder components for you, which is also an option). Then you will need to solder everything by looking at the [schematic](https://github.com/Anvarys/lightclock/blob/main/images/schematic.pdf) for references of the components. Also you will need to 3d print the enclosure, files of which you can find in the [CAD folder](https://github.com/Anvarys/lightclock/tree/main/CAD). Now you will need to flash the device with the firmware... **WIP**. Then when you check that it boots up successfully you can assemble the enclosure by first mounting the fan on the back enclosure part, then mounting the pcb to it as well, and finally snap the front enclosure part on the PCB.
+
+## Schematic
+
+![schematic image](https://github.com/Anvarys/lightclock/blob/main/images/schematic.png?raw=true)
+
+## PCB
+
+<img src="https://github.com/Anvarys/lightclock/blob/main/images/pcb.png?raw=true" height="400">
+
+3D renders:
+
+<img src="https://github.com/Anvarys/lightclock/blob/main/images/pcb_3d_top_no_bg.jpeg?raw=true" height="400">
+
+<img src="https://github.com/Anvarys/lightclock/blob/main/images/pcb_3d_bottom_no_bg.jpeg?raw=true" height="400">
+
+## Assembly
+
+<img src="https://github.com/Anvarys/lightclock/blob/main/images/assembly_sideview.png?raw=true" height="400">
+
+## Assembled
+
+<img src="https://github.com/Anvarys/lightclock/blob/main/images/assembled_frontview.png?raw=true" height="400">
+
+<img src="https://github.com/Anvarys/lightclock/blob/main/images/assembled_backview.png?raw=true" height="400">
 
 ## Tools I used
 
@@ -51,3 +78,12 @@ Also I added 4 exposed GPIO pads on the PCB that you can use them to integrate s
   <li>3D design: <a href="https://www.autodesk.com/products/fusion-360/overview">Autodesk Fusion</a> (free version)</li>
   <li>Art design: <a href="https://figma.com">Figma</a></li>
 </ul>
+
+## Repository structure
+
+- [/CAD](https://github.com/Anvarys/lightclock/tree/main/CAD) - All the 3d models and the assembly
+- [/PCB](https://github.com/Anvarys/lightclock/tree/main/PCB) - KiCAD PCB project
+  - [/production](https://github.com/Anvarys/lightclock/tree/main/PCB/production) - Files required to produce the PCB (and PCBA for JLCPCB)
+  - [/scripts](https://github.com/Anvarys/lightclock/tree/main/PCB/scripts) - Scripts I made in python to place the LEDs and capacitive touch pad footprints perfectly on the PCB
+- [/BOM](https://github.com/Anvarys/lightclock/tree/main/BOM) - Bill of materials (the list of all parts you need to buy)
+- [/images](https://github.com/Anvarys/lightclock/tree/main/images) - Images of the project such as 3d renders, schematic, PCB, etc.
