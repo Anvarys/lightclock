@@ -57,9 +57,9 @@ First you would want to buy all the required components found in the [BOM](https
 
 3D renders:
 
-<img src="https://github.com/Anvarys/lightclock/blob/main/images/pcb_3d_top_no_bg.jpeg?raw=true" height="400">
+<img src="https://github.com/Anvarys/lightclock/blob/main/images/pcb_3d_top_no_bg_smaller.png?raw=true" height="400">
 
-<img src="https://github.com/Anvarys/lightclock/blob/main/images/pcb_3d_bottom_no_bg.jpeg?raw=true" height="400">
+<img src="https://github.com/Anvarys/lightclock/blob/main/images/pcb_3d_bottom_no_bg_smaller.png?raw=true" height="400">
 
 ## Assembly
 
