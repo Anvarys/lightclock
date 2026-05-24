@@ -9118,6 +9118,12 @@
 		(uuid "965a91e0-764c-4987-89c7-355f12f2632e")
 	)
 	(junction
+		(at 472.44 72.39)
+		(diameter 0)
+		(color 0 0 0 0)
+		(uuid "9e5c0bf6-8cd0-455b-bf81-9238e379fb48")
+	)
+	(junction
 		(at 73.66 227.33)
 		(diameter 0)
 		(color 0 0 0 0)
@@ -9410,10 +9416,6 @@
 	(no_connect
 		(at 303.53 129.54)
 		(uuid "73b6fe32-3941-4ae4-81d1-58f35e81a660")
-	)
-	(no_connect
-		(at 355.6 93.98)
-		(uuid "7e566114-7f1e-4b2a-a2df-e910b1756bea")
 	)
 	(no_connect
 		(at 435.61 210.82)
@@ -10200,6 +10202,16 @@
 			(type default)
 		)
 		(uuid "21e6c348-b433-43d9-b3d7-74e1f3b8e395")
+	)
+	(wire
+		(pts
+			(xy 365.76 93.98) (xy 355.6 93.98)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "24623016-24ce-4cfc-974e-34469311dd83")
 	)
 	(wire
 		(pts
@@ -11083,6 +11095,16 @@
 	)
 	(wire
 		(pts
+			(xy 472.44 80.01) (xy 472.44 72.39)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "4b55f037-d2b3-4808-90f5-8913117a9807")
+	)
+	(wire
+		(pts
 			(xy 59.69 76.2) (xy 62.23 76.2)
 		)
 		(stroke
@@ -11100,6 +11122,16 @@
 			(type default)
 		)
 		(uuid "4c7c793a-e9dc-4c00-8b39-cdba581db322")
+	)
+	(wire
+		(pts
+			(xy 472.44 80.01) (xy 481.33 80.01)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "4ce40ef6-40b9-4393-96e6-55d137d10134")
 	)
 	(wire
 		(pts
@@ -16388,6 +16420,16 @@
 		)
 		(uuid "ceaffda6-8d99-42ed-bcb4-db137b53148a")
 	)
+	(label "GPIO14"
+		(at 481.33 80.01 180)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify right bottom)
+		)
+		(uuid "cef3f4aa-ce09-4f50-922a-288586b5b61d")
+	)
 	(label "QSPI_SD3"
 		(at 283.21 64.77 180)
 		(effects
@@ -16590,6 +16632,16 @@
 			(justify right bottom)
 		)
 		(uuid "e8a9c6ea-3211-48a5-a7ea-03c681fa075a")
+	)
+	(label "GPIO14"
+		(at 365.76 93.98 180)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify right bottom)
+		)
+		(uuid "e954f3a6-bc4e-44c1-9e52-bec325dec178")
 	)
 	(label "C20"
 		(at 68.58 116.84 0)
