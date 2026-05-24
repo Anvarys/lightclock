@@ -4,11 +4,25 @@
 #include <MUIU8g2.h>
 #include <Adafruit_MPR121.h>
 #include <DS3231.h>
+#include <SPI.h>
+#include <Ticker.h>
 
 #ifndef _BV
 #define _BV(bit) (1 << (bit)) 
 #endif
 
+#define CONTROLS_COOLDOWN 150 // ms
+
+#define OE0   6
+#define OE1   7
+#define OE2   8
+#define LE_DM 3
+#define DM    2
+#define TF    0
+
+#define PWM_STEPS 256
+#define PWM_FREQ  200
+#define PWM_PERIOD_US (1000000 / (PWM_STEPS * PWM_FREQ))
 
 #define I2C0_SDA 4
 #define I2C0_SCL 5
@@ -19,9 +33,8 @@
 
 #define MPR121_AUTOCONFIG true
 
-Adafruit_MPR121 mpr121_0 = Adafruit_MPR121();
-Adafruit_MPR121 mpr121_1 = Adafruit_MPR121();
-Adafruit_MPR121 mpr121_2 = Adafruit_MPR121();
+
+// display
 
 U8G2_SSD1309_128X64_NONAME0_F_HW_I2C display(
   U8G2_R2, // 180 degrees rotation because the screen is flipped
@@ -30,9 +43,19 @@ U8G2_SSD1309_128X64_NONAME0_F_HW_I2C display(
   I2C0_SDA
 );
 
+
+// RTC
+
 DS3231 RTC;
 bool h12;
 bool hPM;
+
+
+// capacitive touch buttons
+
+Adafruit_MPR121 mpr121_0 = Adafruit_MPR121();
+Adafruit_MPR121 mpr121_1 = Adafruit_MPR121();
+Adafruit_MPR121 mpr121_2 = Adafruit_MPR121();
 
 volatile bool irqFired = false;
 
@@ -40,15 +63,41 @@ bool circleClicked = false;
 uint8_t circleClickedId = 0;
 
 enum ControlButton {
-  SQUARE, DOWN, UP, SELECT
+  CB_SQUARE, CB_DOWN, CB_UP, CB_SELECT
 };
 bool controlsClicked = false;
-ControlButton controlButtonClicked = SQUARE;
-
+bool controlsJustClicked = false;
+ControlButton controlButtonClicked = CB_SQUARE;
+uint64_t lastControlsClickTime = 0;
 uint64_t lastButtonActivity = 0;
-uint64_t timeInactive = 60 * 1000; // ms
 
-uint64_t lastTimeUpdate = 0;
+
+// LEDs
+
+uint8_t leds[24] = {0};
+volatile uint8_t pwmCounter = 0;
+
+
+// state management & UX
+
+uint64_t lastTimeUpdateTime = 0; // the time of the last update of the time when the device is inactive
+
+enum State {
+  INACTIVE, HOME, ALARM_H, ALARM_M
+};
+State currentState = HOME;
+uint8_t selector = 0;
+
+
+// setup variables
+
+uint8_t hours = 0;
+uint8_t minutes = 0;
+
+// config
+
+uint64_t timeInactive = 60 * 1000; // how much time after last button press to set state to inactive (in ms)
+
 
 void onIRQ() {
   irqFired = true;
@@ -58,7 +107,6 @@ void setup() {
   Wire.begin();
 
   // display
-
   display.begin();
   display.clearBuffer();
 
@@ -82,6 +130,44 @@ void setup() {
   if (!RTC.oscillatorCheck()) {
     RTC.setEpoch(1779637745); // !!! modify this to your current time
   }
+
+  // LED driver
+
+  pinMode(OE0, OUTPUT);
+  pinMode(OE1, OUTPUT);
+  pinMode(OE2, OUTPUT);
+  pinMode(LE_DM, OUTPUT);
+  pinMode(DM, OUTPUT);
+  pinMode(TF, INPUT);
+
+  digitalWrite(OE0, LOW);
+  digitalWrite(OE1, LOW);
+  digitalWrite(OE2, LOW);
+  digitalWrite(LE_DM, LOW);
+  digitalWrite(DM, LOW);
+
+  SPI.begin();
+  SPI.beginTransaction(SPISettings(8000000, MSBFIRST, SPI_MODE0));
+}
+
+void setup1() {}
+
+void updatePWM() {
+  uint32_t state = 0;
+  for (uint8_t channel = 0; channel < 24; channel++) {
+    if (leds[channel] > pwmCounter) {
+      state |= (1UL << (23 - channel));
+    }
+  }
+
+  SPI.transfer((state >> 16) & 0xFF);
+  SPI.transfer((state >> 8) & 0xFF);
+  SPI.transfer(state & 0xFF);
+
+  digitalWrite(LE_DM, HIGH);
+  digitalWrite(LE_DM, LOW);
+
+  pwmCounter++;
 }
 
 
@@ -132,22 +218,63 @@ void updateMPR121s() {
   }
 
   if (maxDeltaId != -1) {
+    if (controlsClicked == false) {
+      controlsJustClicked = true;
+    }
     controlsClicked = true;
     controlButtonClicked = (ControlButton) maxDeltaId;
-    lastButtonActivity = millis();
   }
 }
 
 void updateTimeOnDisplay() {
-  if (!((millis() - lastTimeUpdate >= 1000 && millis() - lastButtonActivity >= timeInactive))) return;
-  lastTimeUpdate = millis();
+  if (!((millis() - lastTimeUpdateTime >= 500 && millis() - lastButtonActivity >= timeInactive))) return;
+  lastTimeUpdateTime = millis();
 
   display.clearBuffer();
   display.setFont(u8g2_font_logisoso38_tn);
   display.drawStr(20, 10, RTC.getHour(h12, hPM) + ":" + RTC.getMinute());
   display.sendBuffer();
+
+  currentState = INACTIVE;
 }
 
+void handleControlClicks() {
+  if (!controlsJustClicked || millis() - lastControlsClickTime < CONTROLS_COOLDOWN) {return;}
+  controlsJustClicked = false;
+  lastControlsClickTime = millis();
+
+  switch (controlButtonClicked)
+  {
+  case CB_SELECT:
+    switch (currentState)
+    {
+    case HOME:
+      if (selector == 0) {
+        currentState = ALARM_H;
+      }
+      break;
+    
+    case ALARM_H:
+      hours = circleClickedId;
+      currentState = ALARM_M;
+
+    case ALARM_M:
+      // todo this
+    
+    default:
+      break;
+    }
+    break;
+  
+  default:
+    break;
+  }
+}
+
+void loop1() {
+  updatePWM();
+  delayMicroseconds(PWM_PERIOD_US);
+}
 
 void loop() {
   updateMPR121s();
