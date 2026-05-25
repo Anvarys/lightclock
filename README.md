@@ -82,6 +82,18 @@ First you would want to buy all the required components found in the [BOM](https
   <li>Art: <a href="https://figma.com">Figma</a></li>
 </ul>
 
+## BOM
+
+Totals
+| | |
+|-|-|
+|Parts|76.50$|
+|Supplies|22.08$|
+|Shipping|44.23$|
+|Everything|142.81$|
+
+You can find the detailed BOM in [/BOM](https://github.com/Anvarys/lightclock/tree/main/BOM)
+
 ## Repository structure
 
 - [/CAD](https://github.com/Anvarys/lightclock/tree/main/CAD) - All the 3d models and the assembly

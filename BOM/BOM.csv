@@ -44,7 +44,7 @@ LCSC FedEx fast shipping,,,-,US$28.81,US$66.33,Without fast shipping I won't be 
 ,,,,,,
 JLCPCB PCB,1,5,https://jlcpcb.com,US$15.75,US$82.08,
 JLCPCB DHL fast shipping,,,-,US$22.14,US$104.22,
-JLCPCB coupon,,,,-US$10.00,US$94.22,New user shipping coupon
+JLCPCB shipping coupon,,,,-US$10.00,US$94.22,New user shipping coupon
 ,,,,,,
 M2.5 5mm screws,9,50,https://fr.aliexpress.com/item/1005008305312481.html,US$2.13,US$96.35,"flat head, must have: dk <= 6.5mm && k <= 1.4mm"
 M3 6mm screws,5,50,https://fr.aliexpress.com/item/1005008305312481.html,US$2.03,US$98.38,"flat head, must have: dk <= 6.5mm && k <= 1.4mm"
@@ -54,6 +54,4 @@ Fan 12V,1,1,https://fr.aliexpress.com/item/1005002566049059.html,US$2.87,US$120.
 ,,,,,,
 3D printing Filament,80g,1kg,https://www.amazon.fr/ELEGOO-Imprimante-Précision-Dimensionnelle-Imprimantes/dp/B0D4Z8QT5T,US$22.08,US$142.81,preferably matte
 ,,,,,,
-,,,,,,
-,,,,,,
-Total,,,,US$120.73,,
+Total,,,,US$142.81,,
