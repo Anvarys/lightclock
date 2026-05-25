@@ -24,6 +24,8 @@
 #define PWM_FREQ  200
 #define PWM_PERIOD_US (1000000 / (PWM_STEPS * PWM_FREQ))
 
+#define BUZZER 22
+
 #define I2C0_SDA 4
 #define I2C0_SCL 5
 
@@ -50,6 +52,7 @@ DS3231 RTC;
 bool h12;
 bool hPM;
 
+bool rtcInterruptFired = true;
 
 // capacitive touch buttons
 
@@ -89,15 +92,15 @@ State currentState = HOME;
 uint8_t selector = 0;
 
 
-// setup variables
+// alarm
 
 uint8_t hours = 0;
 uint8_t minutes = 0;
+bool alarmOn = false;
 
 // config
 
 uint64_t timeInactive = 60 * 1000; // how much time after last button press to set state to inactive (in ms)
-
 
 void onIRQ() {
   irqFired = true;
@@ -130,6 +133,12 @@ void setup() {
   if (!RTC.oscillatorCheck()) {
     RTC.setEpoch(1779637745); // !!! modify this to your current time
   }
+
+  RTC.setA1Time(
+    0, 0, 0, 0, 0b1111, false, false, false
+  );
+  RTC.turnOnAlarm(1);
+  RTC.checkIfAlarm(1);
 
   // LED driver
 
@@ -170,6 +179,19 @@ void updatePWM() {
   pwmCounter++;
 }
 
+void playTone(int pin, int frequency, int duration) {
+  int period = 1000000 / frequency;
+  int halfPeriod = period / 2;
+  long cycles = (long)frequency * duration / 1000;
+
+  for (long i = 0; i < cycles; i++) {
+    digitalWrite(pin, HIGH);
+    delayMicroseconds(halfPeriod);
+    digitalWrite(pin, LOW);
+    delayMicroseconds(halfPeriod);
+  }
+}
+
 
 void updateMPR121s() {
   if (!irqFired) return;
@@ -199,6 +221,10 @@ void updateMPR121s() {
     circleClicked = true;
     circleClickedId = maxDeltaId;
     lastButtonActivity = millis();
+
+    if (currentState == INACTIVE) {
+      currentState = HOME;
+    }
   } else {
     circleClicked = false;
   }
@@ -223,19 +249,19 @@ void updateMPR121s() {
     }
     controlsClicked = true;
     controlButtonClicked = (ControlButton) maxDeltaId;
+    if (currentState == INACTIVE) {
+      currentState = HOME;
+    }
   }
 }
 
 void updateTimeOnDisplay() {
-  if (!((millis() - lastTimeUpdateTime >= 500 && millis() - lastButtonActivity >= timeInactive))) return;
-  lastTimeUpdateTime = millis();
+  if (currentState != INACTIVE) {return;}
 
   display.clearBuffer();
   display.setFont(u8g2_font_logisoso38_tn);
   display.drawStr(20, 10, RTC.getHour(h12, hPM) + ":" + RTC.getMinute());
   display.sendBuffer();
-
-  currentState = INACTIVE;
 }
 
 void handleControlClicks() {
@@ -257,18 +283,64 @@ void handleControlClicks() {
     case ALARM_H:
       hours = circleClickedId;
       currentState = ALARM_M;
+      break;
 
     case ALARM_M:
-      // todo this
+      minutes = circleClickedId;
+      alarmOn = true;
+      currentState = HOME;
+      break;
     
     default:
       break;
     }
     break;
+
+  case CB_SQUARE:
+    currentState = HOME;
+    break;
   
   default:
     break;
   }
+}
+
+void handleAlarm() {
+  if (alarmOn) {return;}
+
+  if (millis() - lastButtonActivity < 2000) {
+    alarmOn = false;
+    return;
+  }
+
+  uint64_t curTime = RTClib::now().unixtime();
+  uint64_t alarmTime = curTime - curTime % 86400 + minutes * 60 + hours * 3600;
+
+  if (alarmTime - curTime < 1200) {
+    uint16_t brightness = (1400 - (alarmTime - curTime)) / 5;
+    if (brightness > 255) {
+      brightness = 255;
+    }
+
+    memset(leds, brightness, sizeof(leds));
+  }
+
+  if (curTime - alarmTime >= 0) {
+    playTone(BUZZER, 1000, 500);
+  }
+}
+
+void onSecond() {
+  if (millis() - lastButtonActivity > timeInactive) {
+    currentState = INACTIVE;
+  }
+
+  updateTimeOnDisplay();
+  handleAlarm();
+}
+
+void onRTCAlarmInterrup() {
+  rtcInterruptFired = true;
 }
 
 void loop1() {
@@ -278,5 +350,12 @@ void loop1() {
 
 void loop() {
   updateMPR121s();
+  handleControlClicks();
   updateTimeOnDisplay();
+
+  if (rtcInterruptFired) {
+    rtcInterruptFired = false;
+    RTC.checkIfAlarm(1);
+    onSecond();
+  }
 }
