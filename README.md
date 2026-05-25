@@ -94,6 +94,8 @@ Totals
 
 You can find the detailed BOM in [/BOM](https://github.com/Anvarys/lightclock/tree/main/BOM)
 
+P.S. I chose fast shipping as otherwise I won't be able to build the project until August
+
 ## Repository structure
 
 - [/CAD](https://github.com/Anvarys/lightclock/tree/main/CAD) - All the 3d models and the assembly
