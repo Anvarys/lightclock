@@ -198,7 +198,7 @@ void updateMPR121s() {
   irqFired = false;
 
   int16_t maxDelta = 0;
-  uint8_t maxDeltaId = -1;
+  int8_t maxDeltaId = -1;
 
   for (uint8_t i = 0; i < 24; i++) {
     int16_t delta = 0;
@@ -313,8 +313,8 @@ void handleAlarm() {
     return;
   }
 
-  uint64_t curTime = RTClib::now().unixtime();
-  uint64_t alarmTime = curTime - curTime % 86400 + minutes * 60 + hours * 3600;
+  int64_t curTime = RTClib::now().unixtime();
+  int64_t alarmTime = curTime - curTime % 86400 + minutes * 60 + hours * 3600;
 
   if (alarmTime - curTime < 1200) {
     uint16_t brightness = (1400 - (alarmTime - curTime)) / 5;
