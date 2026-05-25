@@ -73,17 +73,13 @@ First you would want to buy all the required components found in the [BOM](https
 <td><img src="https://github.com/Anvarys/lightclock/blob/main/images/assembled_backview.png?raw=true"></td>
 </tr></table>
 
-## Firmware
-
-**WIP**
-
 ## Tools I used
 
 <ul style="list-style-type:none;">
   <li>PCB design: <a href="https://kicad.org">KiCAD</a></li>
   <li>3D design: <a href="https://www.autodesk.com/products/fusion-360/overview">Autodesk Fusion</a> (free version)</li>
   <li>Firmware: <a href="https://code.visualstudio.com">VS code</a> with <a href="https://platformio.org">PlatformIO</a></li>
-  <li>Art design: <a href="https://figma.com">Figma</a></li>
+  <li>Art: <a href="https://figma.com">Figma</a></li>
 </ul>
 
 ## Repository structure
