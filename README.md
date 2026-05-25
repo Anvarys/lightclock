@@ -94,4 +94,8 @@ First you would want to buy all the required components found in the [BOM](https
   - [/scripts](https://github.com/Anvarys/lightclock/tree/main/PCB/scripts) - Scripts I made in python to place the LEDs and capacitive touch pad footprints perfectly on the PCB
 - [/firmware](https://github.com/Anvarys/lightclock/tree/main/firmware) - PlatformIO project with all firmware sources and configs
 - [/BOM](https://github.com/Anvarys/lightclock/tree/main/BOM) - Bill of materials (the list of all parts you need to buy)
-- [/images](https://github.com/Anvarys/lightclock/tree/main/images) - Images of the project such as 3d renders, schematic, PCB, etc.
+- [/images](https://github.com/Anvarys/lightclock/tree/main/images) - Images of the project such as 3d renders, schematic, PCB, zine, etc.
+
+## Zine
+
+![zine](https://github.com/Anvarys/lightclock/blob/main/images/zine.png?raw=true)
