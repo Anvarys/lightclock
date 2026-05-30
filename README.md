@@ -87,10 +87,10 @@ First you would want to buy all the required components found in the [BOM](https
 Totals
 | | |
 |-|-|
-|Parts|76.50$|
+|Parts|102.84$|
 |Supplies|22.08$|
-|Shipping|44.23$|
-|Everything|142.81$|
+|Shipping|39.34$|
+|Everything|164.26$|
 
 You can find the detailed BOM in [/BOM](https://github.com/Anvarys/lightclock/tree/main/BOM)
 
